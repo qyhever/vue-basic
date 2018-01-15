@@ -1,5 +1,5 @@
 <template>
-	<div>
+	<div class="layout">
 		设置
 	</div>
 </template>

@@ -10,6 +10,10 @@ import router from './router/router';
 // 阻止 vue 在启动时的生产提示，一般默认就是false
 Vue.config.productionTip = false;
 
+// 导入rem适配包
+// import 'lib-flexible';
+import '../static/js/adapter.js';
+
 // 导入公共全局样式
 import '../static/css/site.css';
 
@@ -20,7 +24,7 @@ Vue.use(Mint);
 import 'mint-ui/lib/style.min.css';
 
 // 导入mui
-import '../static/mui/css/mui.css'
+import '../static/mui/css/mui.css';
 
 // 导入axios请求库
 import axios from 'axios';

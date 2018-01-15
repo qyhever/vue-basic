@@ -1,7 +1,7 @@
 <template>
-	<div>
-		<!-- 1.0利用mint-ui组件实现页面头部 -->
-		<mt-header fixed title="头部"></mt-header>
+	<div class="layout">
+		<!-- 1.0利用mui组件实现页面头部 -->
+		<mt-header fixed title="固定在顶部"></mt-header>
 		
 		<!-- 2.0 利用vue-router的 <router-view>进行占位 -->
 		<router-view />
@@ -37,5 +37,6 @@ export default {
 </script>
 
 <style scoped lang="scss">
-	
+
+
 </style>

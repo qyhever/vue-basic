@@ -1,0 +1,4 @@
+$rem: 100;
+@function rem($val){
+	@return $val/$rem + rem;
+}

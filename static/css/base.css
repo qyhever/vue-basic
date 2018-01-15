@@ -1,7 +1,154 @@
-* {
-	margin: 0;
-	padding: 0;
+/* 初始化样式 */
+html, body, ol, ul, li, dl, dt, dd, hr, div, img, a, span, p, form, input, h1, h2, h3, h4, h5, h6 {
+    padding: 0;
+    margin: 0;
+    /*设置宽度以边框开始计算*/
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -ms-box-sizing: border-box;
+    -o-box-sizing: border-box;
+    box-sizing: border-box;
+    /*去除链接点击高亮效果*/
+    -webkit-tap-highlight-color: transparent;
+  	-webkit-tap-highlight-color:rgba(255,255,255,0);
 }
-ul,ol {
-	list-style: none;
+
+html{
+    -ms-text-size-adjust:none;
+    -webkit-text-size-adjust:none;
+    text-size-adjust:none;
+}
+
+ul, ol, li {
+    list-style: none;
+}
+
+input {
+    /*在移动端清除浏览器默认样式*/
+    -webkit-appearance: none;
+    border: none;
+    outline: none;
+}
+input::-webkit-input-speech-button {display: none}
+
+img {
+    border: 0;
+    vertical-align: middle;
+}
+
+ins, i, s {
+    font-style: normal;
+}
+
+/*a链接初始化*/
+a:link {text-decoration: none;}
+a:visited {text-decoration: none;}
+a:active {text-decoration: none;}
+a:focus {text-decoration: none;}
+a, a:hover {
+    color: #333; 
+    text-decoration: none;
+}
+
+.clearfix:after {
+    content: ".";
+    display: block;
+    height: 0;
+    line-height: 0px;
+    clear: both;
+    visibility: hidden;
+}
+
+/*兼容ie*/
+.clearfix {
+    *zoom: 1;
+}
+
+html, body {
+    height: 100%;
+}
+
+body {
+    font-family: Helvetica, "Microsoft YaHei", sans-serif;
+    font-size: 14px;
+    color: #333;
+}
+
+/*兼容屏幕的媒体查询*/
+/*
+    按照20份进行计算
+    eg: 设计稿为32px，应该这么写（32/32rem） 
+ */
+/* @media screen and (min-width: 320px) {
+    html {
+        font-size: 16px;
+    }
+}
+
+@media screen and (min-width: 360px) {
+    html {
+        font-size: 18px;
+    }
+}
+
+@media screen and (min-width: 375px) {
+    html {
+        font-size: 18.75px;
+    }
+}
+
+@media screen and (min-width: 414px) {
+    html {
+        font-size: 20.7px;
+    }
+}
+
+@media screen and (min-width: 440px) {
+    html {
+        font-size: 22px;
+    }
+}
+
+@media screen and (min-width: 480px) {
+    html {
+        font-size: 24px;
+    }
+}
+
+@media screen and (min-width: 520px){
+    html{
+        font-size: 26px;
+    }
+}
+@media screen and (min-width: 560px){
+    html{
+        font-size: 28px;
+    }
+}
+@media screen and (min-width: 600px){
+    html{
+        font-size: 30px;
+    }
+}
+
+@media screen and (min-width: 640px) {
+    html {
+        font-size: 32px;
+    }
+} */
+
+.f_left {
+    float: left;
+}
+
+.f_right {
+    float: right;
+}
+
+.layout {
+    width: 100%;
+    height: 100%;
+    margin: 0 auto;
+    min-width: 320px;
+    max-width: 640px;
 }

@@ -286,7 +286,7 @@ body
     line-height: 21px;
 
     color: #000;
-    background-color: #efeff4;
+    /* background-color: #efeff4; */
 
     -webkit-overflow-scrolling: touch;
 }
