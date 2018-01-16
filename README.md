@@ -56,9 +56,76 @@
    1. mint-ui swipe组件实现轮播图
    2. 抽取单独的slider（轮播图）组件，在Home组件引入
 
+   ## 使用mui实现九宫格
 
+   1. grid-default组件
+   2. a链接改为router-link
 
-	## 使用mui实现九宫格
+   ## 左上角返回按钮
 
-1. grid-default组件
-2. a链接改为router-link
+   1. 后退使用vue-router中的`this.$router.go(-1)`
+
+      ```javascript
+      backto(){
+      	this.$router.go(-1);
+      }
+      ```
+
+   2. 控制返回按钮在首页（或者tab页面）隐藏，其他页面显示
+
+      ```javascript
+      '$route' (to, from) {
+          if (to.path.toLowerCase() == '/home' ||
+              to.path.toLowerCase() == '/userinfo' ||
+              to.path.toLowerCase() == '/shopcar' ||
+              to.path.toLowerCase() == '/setting') {
+              this.isShow = false;
+          } else {
+              this.isShow = true;
+          }
+          // console.log(to.path)
+          // console.log(from.path)
+
+          const toDepth = to.path.split('/').length;
+          const fromDepth = from.path.split('/').length;
+
+          // 根据路由深度判断是进入页面还是返回页面
+          // 例如当前页面 路由地址是 /photo/photolist 路由深度就是 3 
+          // 进入 /photo/photoinfo/37 路由深度就是4
+          // 进入页面就使用 slide-left 返回页面就是要slide-right
+          this.transitionName = toDepth < fromDepth ? 'slide-right' : 'slide-left'
+
+      }
+      ```
+
+   3. 路由切换动画
+
+      ```html
+      <-- 用transition标签包裹 -->
+      <transition :name="transitionName">
+        <keep-alive>
+        	<router-view class="child-view" />
+        </keep-alive>
+      </transition>
+      <style>
+      	.slide-left-enter, .slide-right-leave-active {  
+            opacity: 0; 
+            transform: translate(100%, 0);  
+          }  
+        .slide-left-leave-active, .slide-right-enter {  
+          opacity: 0; 
+          transform: translate(-100%, 0);  
+        }
+      </style>
+      ```
+
+   4. `vue-router` 默认 hash 模式，改用路由的 **history 模式**(需要后台配置支持)
+
+      ```javascript
+      new VueRouter({
+        mode: 'history',
+        routes: [...]
+      })
+      ```
+
+      ​

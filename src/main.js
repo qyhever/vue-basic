@@ -14,6 +14,10 @@ Vue.config.productionTip = false;
 // import 'lib-flexible';
 import '../static/js/adapter.js';
 
+// 导入fastclick，解决点击延迟问题
+import FaskClick from 'fastclick';
+FaskClick.attach(document.body);
+
 // 导入公共全局样式
 import '../static/css/site.css';
 
