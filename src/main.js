@@ -33,13 +33,20 @@ import '../static/mui/css/mui.css';
 // 导入axios请求库
 import axios from 'axios';
 Vue.prototype.$axios = axios;
+// 设置接口根路径
+axios.defaults.baseURL = 'http://www.lovegf.cn:8899';
+// axios.defaults.baseURL = 'http://vue.studyit.io';
 
 // 导入axios的post请求参数序列化
 import qs from 'qs';
 Vue.prototype.$qs = qs;
 
-
-
+// 导入moment.js日期格式化类库
+import moment from 'moment';
+// 定义日期格式化全局过滤器
+Vue.filter('datefmt',function(input,fmtStr){
+	return moment(input).format(fmtStr);
+});
 
 
 new Vue({
@@ -48,5 +55,5 @@ new Vue({
     template: '<App/>',
     // components: { App } // 脚手架写法
     // render:function(create){create(App)} //es5的写法
-	render:c=>c(App)  // es6的函数写法
+    render: c => c(App)  // es6的函数写法
 });

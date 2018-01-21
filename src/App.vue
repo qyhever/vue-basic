@@ -84,9 +84,20 @@ export default {
 </script>
 
 <style scoped lang="scss">
+	.layout {
+		width: 100%;
+		margin: 0 auto;
+		min-width: 320px;
+		max-width: 640px;
+	}
+	header, nav {
+		margin: 0 auto;
+		min-width: 320px;
+		max-width: 640px;
+	}
 	.back {
 		z-index: 1000;
-		position: absolute;
+		position: fixed;
 		top: 10px;
 		left: 10px;
 		width: 60px;

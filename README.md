@@ -12,26 +12,16 @@
 2. 项目结构
 
    ```
-   ├─ api
-   	└──	... #抽取出API请求
-   ├─ components
-   ├─ main.js
-   ├─ store
-       ├── index.js		# 定义初始state，组装模块并导出 store 的地方
-       ├── actions.js		# 根级别的 action，用于通过dispatch触发的方法
-       ├── mutations.js	# 根级别的 mutation，用于接收actions通过commit调用对应方法
-       ├── getters.js		# 获取从store中的state中的派生出一些状态
-       └── modules
-           ├── cart.js      # 购物车模块
-           └── products.js  # 产品模块
-   ```
-
-   ```
    ├─ src
        ├── assets			#放置静态文件，之后可能有改变的
        ├── components		#组件
        ├──	kits			#公共的js
        ├──	router 			#路由规则
+       ├─ store
+           ├── index.js	 # 定义初始state，组装模块并导出 store 的地方
+           ├── actions.js	 # 根级别的 action，用于通过dispatch触发的方法
+           ├── mutations.js # 根级别的 mutation，用于接收actions通过commit调用对应方法
+           ├── getters.js	 # 获取从store中的state中的派生出一些状态
        ├──	App.vue			#根组件
        └──	main.js			#入口文件
    ├─ static				#放置静态文件
@@ -101,14 +91,14 @@
    3. 路由切换动画
 
       ```html
-      <-- 用transition标签包裹 -->
+      <-- 用transition标签包裹，keep-alive用于保留组件状态或避免重新渲染。 -->
       <transition :name="transitionName">
         <keep-alive>
         	<router-view class="child-view" />
         </keep-alive>
       </transition>
       <style>
-      	.slide-left-enter, .slide-right-leave-active {  
+        .slide-left-enter, .slide-right-leave-active {  
             opacity: 0; 
             transform: translate(100%, 0);  
           }  
@@ -128,4 +118,9 @@
       })
       ```
 
-      ​
+
+## 新闻详情页NewsList.vue
+
+1. mui的media-list组件实现布局
+2. 设置axios统一根路径
+3. 请求数据，填充数据
