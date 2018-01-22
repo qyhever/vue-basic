@@ -109,18 +109,37 @@
       </style>
       ```
 
-   4. `vue-router` 默认 hash 模式，改用路由的 **history 模式**(需要后台配置支持)
-
-      ```javascript
-      new VueRouter({
-        mode: 'history',
-        routes: [...]
-      })
-      ```
 
 
-## 新闻详情页NewsList.vue
+## 新闻列表页NewsList.vue
 
 1. mui的media-list组件实现布局
 2. 设置axios统一根路径
 3. 请求数据，填充数据
+
+## 新闻详情页NewsInfo.vue
+
+1. NewsList.vue组件router-link写法
+
+   ```javascript
+   // NewsList.vue
+   v-bind="{to:'/news/newsinfo/'+item.id}"
+   ```
+
+2. router.js配置路由规则
+
+   ```javascript
+   // router.js
+   { path: '/news/newsinfo/:id', component: newsinfo }
+   ```
+
+3. NewsInfo.vue组件获取id，通过this.$route.params对象获取
+
+   ```javascript
+   // NewsInfo.vue
+   created() {
+       this.id = this.$route.params.id;
+   }
+   ```
+
+   ​

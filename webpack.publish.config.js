@@ -20,7 +20,9 @@ module.exports = {
     output: {
         path: path.resolve(__dirname, 'dist'),
         filename: 'build.js',
-        sourceMapFilename: '[name].map'
+        sourceMapFilename: '[name].map',
+        // 设置公共路径
+        publicPath: '/',
     },
     module: {
         rules: [

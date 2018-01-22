@@ -49,7 +49,7 @@
 
 <script>
 // 1.0 引入slider组件
-import slider from '../components/subcom/Slider.vue';
+import slider from '../components/subcomponents/Slider.vue';
 export default {
 	components: { slider },
 	created(){

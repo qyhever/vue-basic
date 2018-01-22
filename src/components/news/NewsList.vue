@@ -29,7 +29,6 @@
 					</div>
 				</a>
 			</li>
-		
 			<li class="mui-table-view-cell mui-media" v-for="(item,index) in list" :key="index">
 				<router-link class="mui-navigate-right" v-bind="{to:'/news/newsinfo/'+item.id}">
 					<img class="mui-media-object mui-pull-left" :src="item.img_url">
@@ -48,39 +47,42 @@
 </template>
 
 <script>
-import {Toast} from 'mint-ui';
-export default {
-  data() {
-    return {
-      list: []
-    };
-  },
-  created() {
-	  this.getNewList();
-  },
-  methods: {
-    // 获取新闻列表数据
-    getNewList() {
-		// const url = 'http://www.lovegf.cn:8899/api/getnewslist';
-		const url = '/api/getnewslist';
-		this.$axios.get(url).then((res)=>{
-			let data = res.data;
-			if(data.status != 0){
-				Toast(data.message);
-				return;
+	import { Toast } from "mint-ui";
+	export default {
+		data() {
+			return {
+				list: []
+			};
+		},
+		created() {
+			this.getNewList();
+		},
+		methods: {
+			// 获取新闻列表数据
+			getNewList() {
+				// const url = 'http://www.lovegf.cn:8899/api/getnewslist';
+				const url = "/api/getnewslist";
+				this.$axios.get(url).then(res => {
+					let data = res.data;
+					if (data.status != 0) {
+						Toast(data.message);
+						return;
+					}
+					this.list = data.message;
+				});
 			}
-			this.list = data.message;
-		});
-	}
-  }
-};
+		}
+	};
 </script>
 
 <style scoped>
-	.title, .ft {
-		white-space: nowrap;      /* 1. 强制一行内显示文本 */
-        overflow: hidden;         /* 2. 文字超出隐藏 */
-        text-overflow: ellipsis; /*  3. 文字显示不开用省略号替代 */
-
+	.title,
+	.ft {
+		white-space: nowrap;
+		/* 1. 强制一行内显示文本 */
+		overflow: hidden;
+		/* 2. 文字超出隐藏 */
+		text-overflow: ellipsis;
+		/*  3. 文字显示不开用省略号替代 */
 	}
 </style>

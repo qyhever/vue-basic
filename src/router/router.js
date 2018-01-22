@@ -23,7 +23,7 @@ const newsinfo = () => import('../components/news/NewsInfo.vue');
 
 export default new VueRouter({
 	linkActiveClass: 'mui-active', // 改变路由激活时的class名称，默认值为: "router-link-active"
-	mode: 'history',
+	// mode: 'history',
 	routes: [
 		{ path: '/', redirect: '/home' }, // 默认进入home页面(将根页面重定向到首页home)
 		{ path: '/home', component: home },
@@ -33,6 +33,6 @@ export default new VueRouter({
 		{ path: '/news/newslist', component: newslist },
 		{ path: '/photo/photolist', component: photolist },
 		{ path: '/goods/goodslist', component: goodslist },
-		{ path: '/goods/newsinfo/:id', component: newsinfo },
+		{ path: '/news/newsinfo/:id', component: newsinfo },
 	]
 });
