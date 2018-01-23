@@ -21,6 +21,7 @@
 		},
 		data() {
 			return {
+				id: 0,
 				info: {}
 			};
 		},

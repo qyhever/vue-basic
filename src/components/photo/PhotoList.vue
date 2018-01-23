@@ -12,16 +12,14 @@
 		<div id="imglist">
 			<ul>
 				<li v-for="(item,index) in imgList" :key="index">
-					<!-- <router-link v-bind="{to: '/photo/photoinfo/'+item.id}"> -->
-					<a href="javascript:;">
+					<router-link v-bind="{to: '/photo/photoinfo/'+ item.id}" class="img-link">
 						<!-- <img v-lazy="item.img_url"> -->
 						<img src="../../../static/images/slider02.jpg">
 						<div id="desc">
 							<h5 v-text="item.title"></h5>
 							<p v-text="item.zhaiyao"></p>
 						</div>
-					</a>
-					<!-- </router-link> -->
+					</router-link>
 				</li>
 			</ul>
 		</div>
@@ -68,7 +66,7 @@ export default {
 			const url = '/api/getimgcategory';
 			this.$axios.get(url).then(response=>{
 				let data = response.data;
-				console.log(data)
+				// console.log(data);
 				if(data.status != 0){
 					Toast(data.message);
 					return;
@@ -131,6 +129,9 @@ export default {
 	#imglist img{
 		width:100%;
 		height: 150px;
+	}
+	.img-link {
+		display: block;
 	}
 
 	#desc{

@@ -45,9 +45,14 @@ Vue.prototype.$qs = qs;
 // 导入moment.js日期格式化类库
 import moment from 'moment';
 // 定义日期格式化全局过滤器
-Vue.filter('datefmt',function(input,fmtStr){
-	return moment(input).format(fmtStr);
+Vue.filter('datefmt', function (input, fmtStr) {
+    return moment(input).format(fmtStr);
 });
+
+// 使用图片预览组件
+import VuePreview from 'vue-preview';
+Vue.use(VuePreview);
+
 
 
 new Vue({

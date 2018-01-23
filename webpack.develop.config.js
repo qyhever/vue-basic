@@ -56,6 +56,10 @@ module.exports = {
         {
             test: /\.(eot|woff|ttf|woff2|svg)$/,
             use: 'url-loader?limit=2500&name=fonts/[name].[ext]'
+        },
+        {
+            test: /vue-preview.src.*?js$/,  // vue-preivew组件专用
+            loader: 'babel-loader'
         }
     ]
     },

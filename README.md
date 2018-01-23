@@ -183,3 +183,26 @@ this.$nextTick(()=>{
 ```
 
 调用实例对象的$nextTick方法，确保DOM已渲染完成
+
+## 图片详情PhotoInfo.vue组件
+
+图片预览功能，[vue-preview插件](https://github.com/LS1231/vue-preview)
+
+- 需要在webpack配置文件中进行配置
+
+```javascript
+{
+    test: /vue-preview.src.*?js$/,
+    loader: 'babel'
+}
+```
+
+- 在入口文件引入
+
+```javascript
+import VuePreview from 'vue-preview';
+Vue.use(VuePreview);
+```
+
+
+

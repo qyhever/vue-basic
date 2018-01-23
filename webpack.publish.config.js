@@ -15,7 +15,7 @@ module.exports = {
     entry: {
         app: path.resolve(__dirname, 'src/main.js'),
         // 需要分离的第三方包名写在数组中
-        vendors: ['vue', 'vue-router', 'axios']
+        vendors: ['vue', 'vue-router', 'vuex','axios', 'mint-ui', 'moment', 'vue-preview']
     },
     output: {
         path: path.resolve(__dirname, 'dist'),
