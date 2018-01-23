@@ -142,4 +142,44 @@
    }
    ```
 
-   ​
+
+## Comment.vue评论子组件
+
+通讯问题：父向子传值
+
+```html
+<!-- 父组件 NewsInfo.vue -->
+<v-comment :receive-id="id"></v-comment>
+```
+
+使用子组件，把父组件的id传递到子组件，子组件通过props接受receiveId
+
+```javascript
+// 子组件 comment.vue
+props: ['receiveId']
+// 或者进行验证
+props: {
+    // 接受父组件传过来的id值
+    receiveId : {
+        type: String,
+        required: true
+    }
+}
+```
+
+## 图片列表PhotoList.vue组件
+
+图片分类横向滑动，使用better-scroll
+
+```javascript
+this.$nextTick(()=>{
+    this.cateScroll = new BScroll(this.$refs['category-wrap'],{
+        eventPassthrough: 'vertical',
+        scrollX: true,
+        scrollY: false,
+        preventDefault: false
+    });
+});
+```
+
+调用实例对象的$nextTick方法，确保DOM已渲染完成

@@ -4,8 +4,10 @@
 		<mt-header fixed title="固定在顶部"></mt-header>
 
 		<!--1.0.1 统一的返回按钮 -->
-		<div v-show="isShow" class="back">
-			<a href="javascript:void(0)" @click="backto">返回</a>
+		<div v-show="isShow" class="back-wrap">
+			<a href="javascript:void(0)" @click="backto" class="back-link">
+				<span class="mui-icon mui-icon mui-icon-arrowleft"></span>
+			</a>
 		</div>
 
 		
@@ -97,15 +99,20 @@ export default {
 		min-width: 320px;
 		max-width: 640px;
 	}
-	.back {
+	.back-wrap {
 		z-index: 1000;
 		position: fixed;
-		top: 10px;
-		left: 10px;
-		width: 60px;
-		a {
-			font-weight: 700;
-			font-size: 16px;
+		top: 0;
+		left: 0;
+		width: 40px;
+		height: 40px;
+		.back-link {
+			display: flex;
+			width: 100%;
+			height: 100%;
+			padding-left: 4px;
+			text-align: center;
+			align-items: center;
 			color: #fff;
 		}
 	}
