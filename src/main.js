@@ -19,6 +19,7 @@ import FaskClick from 'fastclick';
 FaskClick.attach(document.body);
 
 // 导入公共全局样式
+import '../static/css/base.css';
 import '../static/css/site.css';
 
 // 导入mint-ui

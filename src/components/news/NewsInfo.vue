@@ -7,14 +7,18 @@
 			</div>
 			<div id="content" v-html="info.content"></div>
 			<!-- 发表评论，子组件 -->
-			<!-- <comment :receiveId="id"></comment> -->
+			<v-comment :receive-id="id"></v-comment>
 		</div>
 	</div>
 </template>
 
 <script>
 	import {Toast} from 'mint-ui';
+	import VComment from '../subcomponents/comment.vue';
 	export default {
+		components: {
+			VComment
+		},
 		data() {
 			return {
 				info: {}

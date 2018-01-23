@@ -64,9 +64,9 @@ a, a:hover {
     *zoom: 1;
 }
 
-html, body {
+/* html, body {
     height: 100%;
-}
+} */
 
 body {
     font-family: Helvetica, Microsoft YaHei, sans-serif;
@@ -137,17 +137,16 @@ body {
     }
 } */
 
-.f_left {
+.fl {
     float: left;
 }
 
-.f_right {
+.fr {
     float: right;
 }
 
 .layout {
     width: 100%;
-    height: 100%;
     margin: 0 auto;
     min-width: 320px;
     max-width: 640px;
