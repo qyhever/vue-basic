@@ -77,7 +77,13 @@
 					this.photoInfo = data.message[0];
 				});
             }
-        }
+        },
+        activated() {
+            console.log('deactivated');
+            if (this.id !== this.$route.params.id){
+                 this.$destroy();
+            }
+         }
     }
 </script>
 

@@ -12,10 +12,10 @@
 
 		<!-- 4.0 使用动态的 transition name -->
 		<transition :name="transitionName">
-			<!-- <keep-alive> -->
+			<keep-alive>
 				<!-- 2.0 利用vue-router的 <router-view>进行占位 -->
 				<router-view />
-			<!-- </keep-alive> -->
+			</keep-alive>
 		</transition>
 		
 		<!-- 3.0 利用mui中的tabbar组件实现系统的底部 -->
