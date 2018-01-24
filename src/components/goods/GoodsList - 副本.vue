@@ -3,7 +3,7 @@
 	<mt-loadmore :autoFill='false' :top-method="loadTop" :bottom-method="loadBottom" :bottom-all-loaded="allLoaded" ref="loadmore">
 		<!-- 1.1 页面布局 -->
 		<div class="good-list-layout">
-			<ul class="good-list-wrap" v-infinite-scroll="loadMore"  infinite-scroll-distance="10">
+			<ul class="good-list-wrap">
 
 				<li class="good-list-item" v-for="(item,index) in goodList" :key="index">
 					<a href="#" class="item-link">
@@ -35,8 +35,7 @@ export default {
 		return {
 			goodList: [],
 			allLoaded: false,
-			pageIndex: 1,
-			flag: true
+			pageIndex: 1
 		}
 	},
 	created(){
@@ -79,23 +78,6 @@ export default {
 					this.goodList = this.goodList.concat(data.message);
 				}
 
-			});
-		},
-		loadMore(){
-			if(!this.flag){
-				return;
-			}
-			this.flag = false;
-			this.pageIndex++;
-			const url = '/api/getgoods?pageindex=' + this.pageIndex;
-			this.$axios.get(url).then((response)=>{
-				this.flag = true;
-				let data = response.data;
-				if(data.status != 0){
-					Toast(data.message);
-					return;
-				}
-				this.goodList = this.goodList.concat(data.message);
 			});
 		}
 	}
