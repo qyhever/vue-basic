@@ -8,9 +8,9 @@
  */
 
 // 1.0 定义常量KEY，将来操作localStorage中的数据都可以使用KEY做为标识
-cosnt KEY = 'goodsdata';
+const KEY = 'goodsdata';
 
-var valueObj = { goodsId: 0, count: 0 };
+let valueObj = { goodsId: 0, count: 0 };
 
 // 2.0 获取数据
 let getItem = () => {

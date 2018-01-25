@@ -3,6 +3,6 @@
  */
 import Vue from 'vue';
 
-export const COUNTSTR = 'inputNumberCount';
+let bus = new Vue();
 
-export let bus = new Vue();
+export { bus };

@@ -15,7 +15,8 @@ module.exports = {
     devServer: {
         //注意：不写hot: true,colors:true，progress:true等，webpack2.x已不支持这些
         inline:true, // 默认是true
-        host: '192.168.30.17',
+        // host: '192.168.30.17',
+        host: '192.168.0.103',
         port: 8090,
         historyApiFallback: true,
     },

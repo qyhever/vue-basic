@@ -29,6 +29,7 @@
 				</li>
 				<li>
 					<mt-button type="primary" size="small">立即购买</mt-button>
+					<!-- 7.1 加入购物车 -->
 					<mt-button type="danger" size="small" @click="toShopCar">加入购物车</mt-button>
 				</li>
 			</ul>
@@ -59,6 +60,8 @@
 <script>
 import { Toast } from 'mint-ui';
 import InputNumber from '../subcomponents/InputNumber.vue';
+import { setItem, valueObj } from '../../tools/storage.js';
+import { bus } from '../../tools/bus.js';
 export default {
 	components: {
 		InputNumber
@@ -80,13 +83,38 @@ export default {
         this.getinfo();
     },
     methods: {
+    	// 7.2
+    	toShopCar(){
+    		// 1.0触发事件
+			bus.$emit('sendCount', this.inputNumberCount);
+    		// 2.0 将数据保存到localStroage中
+			valueObj.goodsId = this.id;
+			valueObj.count = this.inputNumberCount;
+			setItem(valueObj);
+			// 3.0 小球动画
+    		this.isShow = !this.isShow;
+    	},
+		// 6.2
+		beforeEnter(ele){
+			// 设置小球初始位置
+			ele.style.transform = 'translate(0,0)';
+		},
+		enter(ele, done){
+			// 保证小球出现动画
+			ele.offsetWidth;
+			// 设置小球结束位置
+			ele.style.transform = 'translate(75px, 300px)';
+			// 动画结束
+			done();
+		},
+
+		afterEnter(ele){
+			this.isShow = !this.isShow;
+		},
     	// 5.2 获取子组件传递的商品数量
     	getCount(data){
     		console.info(data);
     		this.inputNumberCount = data;
-    	},
-    	toShopCar(){
-    		this.isShow = !this.isShow;
     	},
     	// 1.2 获取商品图片
         getImgs() {
@@ -114,22 +142,6 @@ export default {
 				this.goodsInfo = data.message[0];
 				console.info(this.goodsInfo);
 			});
-		},
-		// 6.2
-		beforeEnter(ele){
-			// 设置小球初始位置
-			ele.style.transform = 'translate(0,0)';
-		},
-		enter(ele, done){
-			// 保证小球出现动画
-			ele.offsetWidth;
-			// 设置小球结束位置
-			ele.style.transform = 'translate(75px, 300px)';
-			// 动画结束
-			done();
-		},
-		afterEnter(ele){
-			this.isShow = !this.isShow;
 		}
     },
     activated() {
@@ -191,14 +203,14 @@ export default {
 		display: inline-block;
 	}
 	.small-ball {
+		z-index: 100;
+		position: absolute;
+		left:150px;
+		top:10px;
 		background-color: red;
 		height: 20px;
 		width: 20px;
 		border-radius: 50%;
-		position: absolute;
-		left:150px;
-		top:10px;
-		transition: all .8s ease;
-		z-index: 100;
+		transition: all .6s ease;
 	}
 </style>
