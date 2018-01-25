@@ -42,7 +42,13 @@
 					this.info = data.message[0];
 				});
 			}
-		}
+		},
+		activated() {
+            console.log('activated');
+            if (this.id !== this.$route.params.id){
+                 this.$destroy();
+            }
+        }
 	};
 </script>
 

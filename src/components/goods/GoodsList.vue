@@ -6,7 +6,7 @@
 			<ul class="good-list-wrap" v-infinite-scroll="loadMore"  infinite-scroll-distance="10">
 
 				<li class="good-list-item" v-for="(item,index) in goodList" :key="index">
-					<a href="#" class="item-link">
+					<router-link class="item-link" v-bind="{to:'/goods/goodsinfo/'+item.id}">
 						<img class="good-pic" :src="item.img_url">
 						<h5 class="item-title"  v-text="item.title"></h5>
 						<div class="description">
@@ -19,7 +19,7 @@
 								<b class="right">剩余{{item.stock_quantity}}件</b>
 							</p>
 						</div>
-					</a>
+					</router-link>
 				</li>
 
 			</ul>

@@ -79,11 +79,11 @@
             }
         },
         activated() {
-            console.log('deactivated');
+            console.log('activated');
             if (this.id !== this.$route.params.id){
                  this.$destroy();
             }
-         }
+        }
     }
 </script>
 
