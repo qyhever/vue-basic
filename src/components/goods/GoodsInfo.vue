@@ -14,14 +14,15 @@
 					市场价: <s>￥{{goodsInfo.market_price}}</s>
 					销售价：<span>￥{{goodsInfo.sell_price}}</span>
 				</li>
-                <!-- <li class="inputli">
-					购买数量： <inputnumber v-on:dataobj="getcount" class="inputnumber"></inputnumber>
-					<transition name="show"
+                <li class="input-li">
+                	<!-- 5.1 输入数量组件 -->
+					购买数量： <input-number @dataObj="getCount" class="input-number"></input-number>
+					<!-- <transition name="show"
 					 @before-enter="beforeEnter" @enter="enter" @after-enter="afterEnter"
 					>
 						<div v-if="isshow" class="ball"></div>
-					</transition>
-				</li> -->
+					</transition> -->
+				</li>
 				<li>
 					<mt-button type="primary" size="small">立即购买</mt-button>
 					<mt-button type="danger" size="small" @click="toShopCar">加入购物车</mt-button>
@@ -45,20 +46,25 @@
 			    <mt-button class="img-desc" type="primary" size="large">图文详情</mt-button>
 			</router-link>
 			<!--4.1 商品评论-->
-            <!-- <router-link v-bind="{to:'/goods/goodscomment/' + id}">
-                <mt-button type="danger" size="large">商品评论</mt-button>
-            </router-link> -->
+            <router-link v-bind="{to:'/goods/goodscomment/' + id}" class="comment-link">
+                <mt-button type="danger" size="large" class="comment-button">商品评论</mt-button>
+            </router-link>
 		</div>
     </div>
 </template>
 <script>
 import { Toast } from 'mint-ui';
+import InputNumber from '../subcomponents/InputNumber.vue';
 export default {
+	components: {
+		InputNumber
+	},
     data() {
         return {
             id: 0,
             imgSrc: [],
-            goodsInfo: {}
+            goodsInfo: {},
+            inputNumberCount: 1
         }
     },
     created() {
@@ -68,6 +74,11 @@ export default {
         this.getinfo();
     },
     methods: {
+    	// 5.2 获取子组件传递的商品数量
+    	getCount(data){
+    		// console.info(data);
+    		this.inputNumberCount = data;
+    	},
     	toShopCar(){
 
     	},
@@ -144,6 +155,15 @@ export default {
 		}
 	}
 	.goods-other {
-		
+
+	}
+	.comment-button {
+		margin-top: 10px;
+	}
+	.input-li {
+		margin-bottom: 10px;
+	}
+	.input-number {
+		display: inline-block;
 	}
 </style>

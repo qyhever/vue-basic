@@ -14,7 +14,7 @@
 
 <script>
 	import {Toast} from 'mint-ui';
-	import VComment from '../subcomponents/comment.vue';
+	import VComment from '../subcomponents/Comment.vue';
 	export default {
 		components: {
 			VComment
