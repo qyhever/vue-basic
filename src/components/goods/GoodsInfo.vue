@@ -17,11 +17,15 @@
                 <li class="input-li">
                 	<!-- 5.1 输入数量组件 -->
 					购买数量： <input-number @dataObj="getCount" class="input-number"></input-number>
-					<!-- <transition name="show"
-					 @before-enter="beforeEnter" @enter="enter" @after-enter="afterEnter"
-					>
-						<div v-if="isshow" class="ball"></div>
-					</transition> -->
+					<!-- 6.1 加入购物车动画 -->
+					<transition
+						name="show"
+						@before-enter="beforeEnter"
+						@enter="enter"
+						@after-enter="afterEnter">
+
+						<div v-if="isShow" class="small-ball"></div>
+					</transition>
 				</li>
 				<li>
 					<mt-button type="primary" size="small">立即购买</mt-button>
@@ -64,23 +68,25 @@ export default {
             id: 0,
             imgSrc: [],
             goodsInfo: {},
-            inputNumberCount: 1
+            inputNumberCount: 1,
+            isShow: false // 控制小球显示隐藏
         }
     },
     created() {
         this.id = this.$route.params.id;
         // 1.3
         this.getImgs();
+        // 2.3 
         this.getinfo();
     },
     methods: {
     	// 5.2 获取子组件传递的商品数量
     	getCount(data){
-    		// console.info(data);
+    		console.info(data);
     		this.inputNumberCount = data;
     	},
     	toShopCar(){
-
+    		this.isShow = !this.isShow;
     	},
     	// 1.2 获取商品图片
         getImgs() {
@@ -96,6 +102,7 @@ export default {
                 // console.info(this.imgSrc);
             });
         },
+        // 2.2 获取商品信息
         getinfo(){
 			const url = '/api/goods/getinfo/' + this.id;
 			this.$axios.get(url).then((response)=>{
@@ -107,6 +114,22 @@ export default {
 				this.goodsInfo = data.message[0];
 				console.info(this.goodsInfo);
 			});
+		},
+		// 6.2
+		beforeEnter(ele){
+			// 设置小球初始位置
+			ele.style.transform = 'translate(0,0)';
+		},
+		enter(ele, done){
+			// 保证小球出现动画
+			ele.offsetWidth;
+			// 设置小球结束位置
+			ele.style.transform = 'translate(75px, 300px)';
+			// 动画结束
+			done();
+		},
+		afterEnter(ele){
+			this.isShow = !this.isShow;
 		}
     },
     activated() {
@@ -161,9 +184,21 @@ export default {
 		margin-top: 10px;
 	}
 	.input-li {
+		position: relative;
 		margin-bottom: 10px;
 	}
 	.input-number {
 		display: inline-block;
+	}
+	.small-ball {
+		background-color: red;
+		height: 20px;
+		width: 20px;
+		border-radius: 50%;
+		position: absolute;
+		left:150px;
+		top:10px;
+		transition: all .8s ease;
+		z-index: 100;
 	}
 </style>
