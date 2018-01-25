@@ -35,8 +35,9 @@ import '../static/mui/css/mui.css';
 import axios from 'axios';
 Vue.prototype.$axios = axios;
 // 设置接口根路径
+// axios.defaults.baseURL = 'http://webhm.top:8899';
 axios.defaults.baseURL = 'http://www.lovegf.cn:8899';
-// axios.defaults.baseURL = 'http://vue.studyit.io';
+// axios.defaults.baseURL = 'http://182.254.146.100:8899';
 
 // 导入axios的post请求参数序列化
 import qs from 'qs';

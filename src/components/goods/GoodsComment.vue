@@ -1,6 +1,6 @@
 <template>
 	<div>
-		<v-comment :receiveId="id"></v-comment>
+		<v-comment :receive-id="id"></v-comment>
 	</div>
 </template>
 

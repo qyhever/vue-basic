@@ -18,9 +18,9 @@
    ├─ src
        ├── assets			#放置静态文件，之后可能有改变的
        ├── components		#组件
-       ├──	kits			#公共的js
+       ├──	tools			#公共的工具方法
        ├──	router 			#路由规则
-       ├─ store
+       ├─  store
            ├── index.js	 # 定义初始state，组装模块并导出 store 的地方
            ├── actions.js	 # 根级别的 action，用于通过dispatch触发的方法
            ├── mutations.js # 根级别的 mutation，用于接收actions通过commit调用对应方法
@@ -207,5 +207,94 @@ import VuePreview from 'vue-preview';
 Vue.use(VuePreview);
 ```
 
+## 商品列表GoodsList.vue组件
 
+下拉/上拉刷新功能，使用mint-ui的loadmore组件
+
+- 在外面加上mt-loadmore标签
+
+```html
+<mt-loadmore :top-method="loadTop" :bottom-method="loadBottom" :bottom-all-loaded="allLoaded" ref="loadmore">
+  <ul>
+    <li v-for="item in list">{{ item }}</li>
+  </ul>
+</mt-loadmore>
+```
+
+- 执行方法
+
+```javascript
+// 下拉时触发 请求最新数据
+loadTop() {
+	console.log('下拉');
+	this.pageIndex = 1;
+	this.getGoodList();
+},
+// 上拉加载更多
+loadBottom() {
+	console.log('上拉');
+	this.pageIndex++;
+	this.getGoodList();
+},
+// 1.2 获取商品列表数据
+getGoodList(){
+	const url = '/api/getgoods?pageindex=' + this.pageIndex;
+	this.$axios.get(url).then((response)=>{
+		let data = response.data;
+		if(data.status != 0){
+			Toast(data.message);
+			return;
+		}
+		if (this.pageIndex == 1) {
+			// 重置下拉状态
+			this.$refs.loadmore.onTopLoaded();
+			// 直接赋值第一页的数据
+			this.goodList = data.message;
+		} else {
+			// 重置上拉状态
+			if (data.message.length == 0) { // 如果没有数据了
+				this.allLoaded = true;
+			}
+			this.$refs.loadmore.onBottomLoaded();
+			this.goodList = this.goodList.concat(data.message);
+		}
+
+	});
+}
+```
+
+## 商品详情GoodsInfo.vue组件
+
+- 子向父传值，发布-订阅模式
+  - 子组件声明一个方法，用来发布事件+数据，每次有数据改变时调用它
+  - 父组件注册（订阅）这个事件，第一个参数就是接受的数据
+
+```javascript
+// 子组件，InputNumber.vue
+methods: {
+    substrictCount() {
+        this.count--;
+        if (this.count < 1) {
+            this.count = 1;
+        }
+        this.sendCount(); // 数据变化时调用（发布）
+    },
+    addCount() {
+        this.count++;
+        this.sendCount(); // 数据变化时调用（发布）
+    },
+    sendCount() { // 声明一个发布消息的方法
+        this.$emit('dataObj', this.count);
+    }
+}
+```
+
+```javascript
+// 父组件，GoodsInfo.vue
+<input-number @dataObj="getCount"></input-number>
+
+getCount(data){
+	this.inputNumberCount = data;
+}
+```
 
