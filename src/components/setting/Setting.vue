@@ -1,13 +1,13 @@
 <template>
 	<div class="layout">
-		设置
+		<mt-cell title="高德地图" label="跳转到 /#/map" is-link :to="{path:'/map'}"></mt-cell>
 	</div>
 </template>
 
 <script>
-	export default {
+export default {
 
-	}
+}
 </script>
 
 <style scoped>

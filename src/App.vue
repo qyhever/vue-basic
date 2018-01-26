@@ -99,6 +99,7 @@ export default {
 	}
 	header,
 	nav {
+		z-index: 1000;
 		margin: 0 auto;
 		min-width: 320px;
 		max-width: 640px;

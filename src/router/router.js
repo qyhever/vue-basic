@@ -24,6 +24,7 @@ const photoinfo = () => import('../components/photo/PhotoInfo.vue');
 const goodsinfo = () => import('../components/goods/GoodsInfo.vue');
 const goodsdesc = () => import('../components/goods/GoodsDescription.vue');
 const goodscomment = () => import('../components/goods/GoodsComment.vue');
+const map = () => import('../components/setting/map.vue');
 
 export default new VueRouter({
 	linkActiveClass: 'mui-active', // 改变路由激活时的class名称，默认值为: "router-link-active"
@@ -42,5 +43,6 @@ export default new VueRouter({
 		{ path: '/goods/goodsinfo/:id', component: goodsinfo },
 		{ path: '/goods/goodsdesc/:id', component: goodsdesc },
 		{ path: '/goods/goodscomment/:id', component: goodscomment },
+		{ path: '/map', component: map },
 	]
 });
